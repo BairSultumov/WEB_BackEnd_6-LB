@@ -1,0 +1,28 @@
+<title>Использование функции $.getScript()</title>
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ваш скрипт
+        $("#ready").click(function () {
+            $("#start").click(function () { // задаем функцию при нажатиии на элемент <button>
+                if($('#alert').is(':checked')){
+                    $.getScript('alert.js')
+                }
+                else if($('#randcolor').is(':checked')){
+                    $.getScript('randcolor.js')
+                }
+                else{
+                    $.getScript('div.js')
+                }
+            });
+        });
+
+    }, false);
+</script>
+<label><input name="radio" type="radio" id="alert" value="alert" checked="checked" >Alert</label> <br>
+<label><input name="radio" type="radio" id="randcolor" value="randcolor">randcolor button</label><br>
+<label><input name="radio" type="radio" id="divcolor" value="divcolor">randcolor div</label><br>
+
+<button id="ready">Ready</button>
+<button id="start">Start</button>

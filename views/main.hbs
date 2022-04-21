@@ -1,0 +1,40 @@
+<table id="table">
+  <tr>
+    <td>Название</td>
+    <td>Цена</td>
+    <td>Количество</td>
+  </tr>
+</table>
+<br>
+<form id="userForm" name="userForm" action="getData">
+  <input id="getButton" type="submit" value="GET" name="getButton">
+  <input id="data" type="number" name="data" placeholder="Поле для ввода">
+  <input id="postButton" type="submit" value="POST" name="postButton">
+</form>
+<br>
+<div id="result">
+
+</div>
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  //POST запрос
+  $("#userForm").submit(function (event) {
+    event.preventDefault();
+    $("#postButton").click(function () {
+      $.post('getData', { 'data': $('#data').val()},
+          function (data) { $('#result').html(data); } 
+      );
+    });
+  });
+
+  //GET запрос
+  $(function () {
+    $("#getButton").click(function () {
+      $.get('getTable', function (data) {
+        $('#table').html(data)
+        alert('GET: Данные загружены')
+      })
+    })
+  })
+
+</script>
